@@ -31,7 +31,8 @@ func main() {
 			elf = append(elf, i)
 		}
 	}
-	fmt.Println(mostCalories(elves))
+	// most := mostCalories(elves)
+	fmt.Println(topThree(elves))
 }
 
 func mostCalories(elves [][]int) int {
@@ -46,4 +47,27 @@ func mostCalories(elves [][]int) int {
 		}
 	}
 	return highest
+}
+
+func topThree(elves [][]int) int {
+	tops := [3]int{0, 0, 0}
+	for _, elf := range elves {
+		sum := 0
+		for _, cal := range elf {
+			sum += cal
+		}
+		x := sum
+		for i, n := range tops {
+			if x > tops[i] {
+				tops[i] = x
+				x = n
+				continue
+			}
+		}
+	}
+	sum := 0
+	for _, n := range tops {
+		sum += n
+	}
+	return sum
 }
