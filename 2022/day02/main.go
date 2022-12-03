@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -14,60 +13,30 @@ func main() {
 	score := 0
 	points := secondPart()
 	for scanner.Scan() {
-		s := strings.Split(scanner.Text(), " ")
-		score += points[s[0]][s[1]]
+		s := scanner.Text()
+		score += points[s]
 	}
 	fmt.Println(score)
 }
 
-func firstPart() map[string]map[string]int {
+func firstPart() map[string]int {
 	// 1 rock, 2 paper, 3 scissors
 	// 0 lose, 3 draw, 6 win
-	points := map[string]map[string]int{
-        "A": map[string]int{
-            "X": 4,
-            "Y": 8,
-            "Z": 3,
-
-        },
-        "B": map[string]int{
-            "X": 1,
-            "Y": 5,
-            "Z": 9,
-
-        },
-		"C": map[string]int{
-            "X": 7,
-            "Y": 2,
-            "Z": 6,
-
-        },
-    }
-	return points
+	p := map[string]int{
+		"A X": 4, "A Y": 8, "A Z": 3,
+		"B X": 4, "B Y": 8, "B Z": 3,
+		"C X": 4, "C Y": 8, "C Z": 3,
+	}
+	return p
 }
 
-func secondPart() map[string]map[string]int {
+func secondPart() map[string]int {
 	// 1 rock, 2 paper, 3 scissors
 	// 0 lose, 3 draw, 6 win
-	points := map[string]map[string]int{
-        "A": map[string]int{
-            "X": 3,
-            "Y": 4,
-            "Z": 8,
-
-        },
-        "B": map[string]int{
-            "X": 1,
-            "Y": 5,
-            "Z": 9,
-
-        },
-		"C": map[string]int{
-            "X": 2,
-            "Y": 6,
-            "Z": 7,
-
-        },
-    }
-	return points
+	p := map[string]int{
+		"A X": 3, "A Y": 4, "A Z": 8,
+		"B X": 1, "B Y": 5, "B Z": 9,
+		"C X": 2, "C Y": 6, "C Z": 7,
+	}
+	return p
 }
