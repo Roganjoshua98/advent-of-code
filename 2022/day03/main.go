@@ -10,7 +10,7 @@ import (
 func main() {
 	file, _ := os.Open("input.txt")
 	scanner := bufio.NewScanner(file)
-	x := partOne(scanner)
+	x := partTwo(scanner)
 	fmt.Println(x)
 }
 
@@ -28,6 +28,35 @@ func partOne(scanner *bufio.Scanner) int {
 				score += charPriority(c)
 				break
 			}
+		}
+	}
+	return score
+}
+
+func partTwo(scanner *bufio.Scanner) int {
+	score := 0
+	group := make([]map[rune]int, 0)
+	i := 0
+	for scanner.Scan() {
+		s := scanner.Text()
+		if i < 2 {
+			m := make(map[rune]int)
+			for _, c := range s {
+				m[c] += 1
+			}
+			group = append(group, m)
+			i += 1
+		} else {
+			for _, c := range s {
+				_, ok1 := group[0][c]
+				_, ok2 := group[1][c]
+				if ok1 && ok2 {
+					score += charPriority(c)
+					break
+				}
+			}
+			i = 0
+			group = make([]map[rune]int, 0)
 		}
 	}
 	return score
