@@ -25,7 +25,7 @@ func partOne(scanner *bufio.Scanner) int {
 		}
 		for _, c := range second {
 			if _, ok := m[c]; ok {
-				score += charPriority(c)
+				score += priority(c)
 				break
 			}
 		}
