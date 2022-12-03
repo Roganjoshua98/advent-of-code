@@ -51,7 +51,7 @@ func partTwo(scanner *bufio.Scanner) int {
 				_, ok1 := group[0][c]
 				_, ok2 := group[1][c]
 				if ok1 && ok2 {
-					score += charPriority(c)
+					score += priority(c)
 					break
 				}
 			}
@@ -62,7 +62,7 @@ func partTwo(scanner *bufio.Scanner) int {
 	return score
 }
 
-func charPriority(c rune) int {
+func priority(c rune) int {
 	if unicode.IsUpper(c) {
 		return int(c - 38)
 	} else {
